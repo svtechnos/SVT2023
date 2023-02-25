@@ -24,6 +24,12 @@ public final class Constants {
   public static final double mT = 0.4;//max turn speed
   public static final double twF = 0.6;//twist factor
   public static final double turnInProgress = 20;
+  public static final double[] lengthsOfArm = {80, 58, 53.3}; //units in cm
+  /*private double claw_init=1450.0; 
+  private double wrist_init=265.08; 
+  private double elbow_init=447.7; 
+  private double shoulder_init=10.0; 
+  */
   public static class ChargeStationConstants {
     //add these to the dashboard
     public static final double gain = 0.005;

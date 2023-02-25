@@ -29,11 +29,17 @@ public class Arm extends SubsystemBase {
   private double wrist;
   private double elbow;
   private double shoulder;
-  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+  /*NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
   NetworkTableEntry tv = table.getEntry("tv");
   NetworkTableEntry tx = table.getEntry("tx");
   NetworkTableEntry ty = table.getEntry("ty");
   NetworkTableEntry ta = table.getEntry("ta");
+  */
+  
+
+  public void setArm() {
+
+  }
   /*NetworkTableEntry FTape = table.pipeline(0);
   NetworkTableEntry FTagR = table.pipeline(1);
   NetworkTableEntry FtagB = table.pipeline(2);
@@ -41,13 +47,11 @@ public class Arm extends SubsystemBase {
   */
 
   //servos
-  PWM s0=new PWM(0);
-  PWM s1=new PWM(1);
-  PWM s2=new PWM(2);
-  PWM s3=new PWM(3);
+  PWM s0=new PWM(0); //claw
+  PWM s1=new PWM(1); //wrist
+  PWM s2=new PWM(2); //elbow
+  PWM s3=new PWM(3); //shoulder
   
-  // Initialize motors here
-
   // array of ints variable for each position
 
   // Current button pressed - target state of the arm expressed as a set of angles
@@ -81,10 +85,10 @@ public class Arm extends SubsystemBase {
     // Did we press a new button? set it in the instance state
     // call the setMotor() on all the correspinding motors in a specfic order
     // handle the state machine logic also here
-    elbow = SmartDashboard.getNumber("DB/Slider 0", elbow_init);
-    claw = SmartDashboard.getNumber("DB/Slider 1", claw_init);
-    wrist = SmartDashboard.getNumber("DB/Slider 2", wrist_init);
-    shoulder = SmartDashboard.getNumber("DB/Slider 3", shoulder_init);
+    elbow = SmartDashboard.getNumber("DB/Slider 0", elbow_init); //gets inputs from smart dashboard
+    claw = SmartDashboard.getNumber("DB/Slider 1", claw_init); //gets inputs from smart dashboard
+    wrist = SmartDashboard.getNumber("DB/Slider 2", wrist_init); //gets inputs from smart dashboard
+    shoulder = SmartDashboard.getNumber("DB/Slider 3", shoulder_init); //gets inputs from smart dashboard
     //System.out.println(elbow_init);
     /*XboxController xboxController = new XboxController(0);
     double leftX = xboxController.getRawAxis(0);
@@ -92,10 +96,10 @@ public class Arm extends SubsystemBase {
     double rightX = xboxController.getRawAxis(4);
     double rightY = xboxController.getRawAxis(5);
     */
-    servo_W(s0, claw); //claw_init
-    servo_W(s1, wrist); //wrist_init 
-    servo_W(s2, elbow); //elbow joint 
-    servo_W(s3, shoulder); //shoulder_init
+    servo_W(s0, claw); //move claw with whatever value is inputted
+    servo_W(s1, wrist); //move wrist with whatever value is inputted
+    servo_W(s2, elbow); //move elbow with whatever value is inputted
+    servo_W(s3, shoulder); //move shoulder with whatever value is inputted
     System.out.println("wrist="+wrist+" elbow="+elbow+" shoulder="+shoulder+" claw="+claw);
 
   }
