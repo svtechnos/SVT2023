@@ -10,6 +10,16 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Arm;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.PS4Controller;
+import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.PWM;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+//import com.arcrobotics.vision.Limelight;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -24,6 +34,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   Drivetrain drivetrain;
   Joystick joystick;
+  XboxController xboxController = new XboxController(0); // 0 is the USB Port to be used as indicated on the Driver Station
   Arm arm;
   public double jxArray[] = new double[750]; // joystick x array
   public double tAngleArray[] = new double[750]; // turn angle array
@@ -66,6 +77,13 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
   }
 
+  public void setNeutral () {
+    if (xboxController.getRawButton(5)) {
+      arm.neutral();
+    }
+  }
+  
+  
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {}
