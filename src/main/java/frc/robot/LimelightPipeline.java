@@ -31,14 +31,15 @@ public class LimelightPipeline {
   //Limelight limelight = new Limelight();
   //limelight.enable();
 
-  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-  NetworkTableEntry tv = table.getEntry("tv");
-  NetworkTableEntry tx = table.getEntry("tx");
-  NetworkTableEntry ty = table.getEntry("ty");
-  NetworkTableEntry ta = table.getEntry("ta");
-  boolean tapePipeline = table.getEntry("FTape").setNumber(0);
-  boolean tagPipelineRed = table.getEntry("FTagR").setNumber(1);
-  boolean tagPipelineBlue = table.getEntry("FTagB").setNumber(2);
+  public static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+  public NetworkTableEntry tv = table.getEntry("tv"); // Whether the limelight has any valid targets (0 or 1)
+  
+  public NetworkTableEntry ty = table.getEntry("ty"); // Vertical Offset From Crosshair To Target (-20.5 degrees to 20.5 degrees)
+  public NetworkTableEntry ta = table.getEntry("ta"); // Target Area (0% of image to 100% of image)
+  public boolean tapePipeline = table.getEntry("FTape").setNumber(0);
+  public boolean tagPipelineRed = table.getEntry("FTagR").setNumber(1);
+  public boolean tagPipelineBlue = table.getEntry("FTagB").setNumber(2);
+
 
   /*table.getEntry("camMode").setNumber(0);
   int imageWidth = (int) table.getEntry("camWidth").getDouble();
